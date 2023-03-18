@@ -1,0 +1,73 @@
+body {
+	margin: 0;
+	padding: 0;
+	font-family: Arial, sans-serif;
+}
+
+.hero-image {
+	background-image: url("https://images.unsplash.com/photo-1536001300484-f9d85eefcd2c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDF8fGJ1c3xlbnwwfHwwfHw%3D&auto=format&fit=crop&w=500&q=60");
+	background-position: center;
+	background-repeat:no-repeat;
+	background-size: cover;
+	height: 100vh;
+	position: relative;
+}
+
+.hero-text {
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: #fff;
+  text-shadow: 2px 2px black;
+}
+
+.hero-text h1 {
+	font-size: 4em;
+	margin: 0;
+}
+
+.hero-text p {
+	font-size: 2em;
+}
+
+.top-destinations {
+	max-width: 1000px;
+	margin: 0 auto;
+	padding: 20px 0;
+}
+
+.top-destinations h2 {
+	font-size: 3em;
+	text-align: center;
+	margin-bottom: 50px;
+}
+
+.destination {
+
+  display: inline-block;
+	vertical-align: top;
+	width: 20%;
+	padding: 20px;
+	box-sizing: border-box;
+	text-align: center;
+}
+
+  
+
+
+.destination img {
+	max-width: 100%;
+	margin-bottom: 10px;
+}
+
+.destination h3 {
+	font-size: 2em;
+	margin: 0;
+}
+
+.destination p {
+	font-size: 1.2em;
+	line-height: 1.5em;
+}

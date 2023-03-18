@@ -1,0 +1,78 @@
+/* General Styles */
+body {
+    background-image: url("https://images.unsplash.com/photo-1570125909232-eb263c188f7e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80");
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    text-shadow: 1px 1px #000;
+    color: #fff;
+  }
+  
+  /* Header Styles */
+  header {
+    color: #fff;
+    padding: 20px;
+    
+  }
+  
+  h1 {
+    margin: 50px;
+    font-size: 36px;
+    text-align: center;
+  }
+  
+  /* Main Content Styles */
+  main {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  section {
+    margin-bottom: 40px;
+  }
+  
+  h2 {
+    margin-top: 0;
+    font-size: 24px;
+  }
+  
+  p {
+    margin-bottom: -20px;
+  }
+  
+  blockquote {
+    margin: 0;
+    font-style: italic;
+  }
+  
+  cite {
+    display: block;
+    font-weight: bold;
+    text-align: right;
+  }
+  
+  /* Testimonials Styles */
+  blockquote + blockquote {
+    margin-top: 40px;
+  }
+  
+  /* Media Queries */
+  @media (max-width: 768px) {
+    header, main {
+      padding: 10px;
+    }
+  
+    h1 {
+      font-size: 28px;
+    }
+  
+    h2 {
+      font-size: 20px;
+    }
+  }
+  

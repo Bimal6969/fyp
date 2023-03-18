@@ -8,7 +8,7 @@
    <!-- <link rel="stylesheet" type="text/css" href="css/footer.css">-->
   </head>
   <body>
-    <!--nav bar -->
+    <!--nav bar start here -->
     <nav>
         <div class="nav-left">
           <div class="logo">
@@ -29,7 +29,7 @@
         </div>
       </nav>
 
-    <!--main body-->
+    <!--main body is here-->
 
     <div class="container">
       <div class="login-box">

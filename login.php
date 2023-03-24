@@ -70,7 +70,7 @@ if (isset($_POST['login'])) {
     if (password_verify($password, $row['password'])) {
       // If the passwords match, create a session for the user and redirect them to a protected page
       $_SESSION['username'] = $username;
-      header("Location: booking.php");
+      header("Location: choosebus.php");
       exit();
     } else {
       // If the passwords don't match, show an error message

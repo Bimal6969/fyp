@@ -1,5 +1,6 @@
 body{
   background-color: #daedd6;
+  overflow: hidden;
 }
 
 .bus-layout td {
@@ -14,13 +15,14 @@ body{
    /* margin: auto;  */
    margin-top: 80px;
    margin-left: 80px;
-  max-width: 400px;
+  max-width: 500px;
+  max-height: 400px;
 
 }
 
 table {
   border-collapse: collapse;
-  width: 90%;
+  width: 95%;
 }
 
 td {
@@ -45,11 +47,89 @@ a:hover {
 }
 
 .seat {
-  background-color: #07b11d;
+  display: inline-block;
+  padding: 10px;
+  margin: 5px;
+  border: 1px solid rgb(14, 185, 51);
+  cursor: pointer;
+}
+
+.booked {
+  background-color: red;
+  color: white;
+  cursor: not-allowed;
 }
 
 .seat.selected {
   background-color: rgb(212, 231, 9);
 }
+
+/* css for the passenger information */
+
+.form-container {
+  width: 100%;
+  max-width: 350px;
+  max-height: 550px;
+  margin: 0 auto;
+  padding: 10px;
+  box-sizing: border-box;
+  background-color: #f2f2f2;
+  border-radius: 10px;
+  position: relative;
+  bottom: 350px;
+  left: 250px;
+}
+
+.form-container h3 {
+  margin-top: 5px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container label {
+  margin-bottom: 1px;
+  font-weight: bold;
+}
+
+.form-container input[type="text"],
+.form-container input[type="email"],
+.form-container input[type="tel"],
+.form-container select {
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  margin-bottom: 1px;
+}
+
+.form-container input[type="text"]:focus,
+.form-container input[type="email"]:focus,
+.form-container input[type="tel"]:focus,
+.form-container select:focus {
+  outline: none;
+  border: 1px solid #6699cc;
+}
+
+button[name="submit"] {
+  background-color: #6699cc;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+}
+
+button[name="submit"]:hover {
+  background-color: #336699;
+}
+
+
+
 
 

@@ -11,12 +11,12 @@ include ("connection.php");
     <title>choose bus</title>
 </head>
 <body>
-    <h1>Choose your bus</h1>
+<h1 style="text-align: center;">Choose your bus</h1>
     <style>
         table {
             border-collapse: collapse;
             width: 80%;
-            margin-left:270px;
+            margin-left:168px;
         }
         th, td {
             text-align: left;
@@ -41,7 +41,7 @@ include ("connection.php");
             border: none;
             cursor: pointer;
         }
-        .update-btn, .delete-btn {
+        /* .update-btn, .delete-btn {
             display: inline-block;
             background-color: #555555;
             color: white;
@@ -56,9 +56,9 @@ include ("connection.php");
         }
         .update-btn:hover, .delete-btn:hover {
             background-color: #333333;
-        }
+        } */
     </style>
-    <a href="manualbooking.php" class="book-btn">Book Ticket </a>
+    
 
 <table>
     <tr>
@@ -92,7 +92,8 @@ include ("connection.php");
                 <td>".$departure_date."</td>
                 <td>".$departure_time."</td>
                 <td>".$cost."</td>
-              </tr>";
+                <td><button><a href='booking.php?Bus_number=".$bus_number."&city=".$city."&Destination=".$destination."'>Book now</a></button></td>
+              </tr>";              
             }
            
         }

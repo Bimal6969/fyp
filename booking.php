@@ -154,7 +154,7 @@ include("connection.php");
 <div class="form-container">
 <form method="POST">
 <h3>Passenger Information</h3>
-<input type="hidden" name="Bus_number" value="<?php echo $_GET['Bus_number']; ?>">
+  <input type="hidden" name="Bus_number" value="<?php echo $_GET['Bus_number']; ?>">
   <input type="hidden" name="city" value="<?php echo $_GET['city']; ?>">
   <input type="hidden" name="Destination" value="<?php echo $_GET['Destination']; ?>">
   <label for="selectedSeats">Selected Seats:</label>
@@ -177,12 +177,12 @@ include("connection.php");
     <option value="other">Other</option>
   </select>
   <br>
-  <button class="login" type="submit" name="submit">Book </button>
+  <button id="book-btn" class="login" type="submit" name="submit">Book</button>
 </form>
 </div>
 
 <script>
-      const seats = document.querySelectorAll('.seat');
+    const seats = document.querySelectorAll('.seat');
     const selectedSeat = [];
 
     seats.forEach(seat => {
@@ -202,76 +202,14 @@ include("connection.php");
   });
 });
 
-let numSelectedSeat = 0;
-
-function bookSeat(seat) {
-  if (seat.classList.contains("reserved")) {
-    alert("This seat is already reserved.");
-    return;
-  }
-
-  if (numSelectedSeat >= maxSeats) {
-    alert("You cannot select more seats than available.");
-    return;
-  }
-
-  seat.classList.add("selected");
-  numSelectedSeat++;
-}
-
-
-function generateSeats() {
-  const container = document.querySelector("#seat-container");
-
-  for (let i = 0; i < totalSeats; i++) {
-    const seat = document.createElement("div");
-    seat.classList.add("seat");
-    
-    // check if seat is reserved
-    if (reservedSeats.includes(i)) {
-      seat.classList.add("reserved");
-    } else {
-      seat.addEventListener("click", function() {
-        bookSeat(seat);
-      });
-    }
-
-    container.appendChild(seat);
-  }
-}
-
-
-
-function bookSeat(seat) {
-  if (seat.classList.contains("reserved")) {
-    alert("This seat is already reserved.");
-    return;
-  }
-
-  if (numSelectedSeat >= maxSeats) {
-    alert("You cannot select more seats than available.");
-    return;
-  }
-
-  if (seat.classList.contains("selected")) {
-    seat.classList.remove("selected");
-    numSelectedSeat--;
-  } else {
-    seat.classList.add("selected");
-    numSelectedSeat++;
-  }
-
-  updateUI();
-}
-
-function updateUI() {
-  const numSelectedLabel = document.querySelector("#num-selected");
-  numSelectedLabel.textContent = numSelectedSeat.toString();
-
-  const totalPriceLabel = document.querySelector("#total-price");
-  totalPriceLabel.textContent = (numSelectedSeat * seatPrice).toString();
-}
-
+bookButton.addEventListener('click', () => {
+  const selectedSeats = document.querySelectorAll('.seat.selected');
+  
+  selectedSeats.forEach(selectedSeat => {
+    selectedSeat.classList.remove('selected');
+    selectedSeat.classList.add('booked');
+  });
+});
 
 </script>
 <?php
@@ -285,7 +223,7 @@ if (isset($_POST['submit'])) {
   $selectedSeat = $_POST['selectedSeat'];
   $fullName = $_POST['fullName'];
   $contactNumber = $_POST['contactNumber'];
-  $email = $_POSTT['email'];
+  $email = $_POST['email'];
   $gender = $_POST['gender'];
 
   // Check if the connection is successful
@@ -294,7 +232,7 @@ if (isset($_POST['submit'])) {
   }
 
   // Prepare and execute the SQL query to insert the user's information into the "booking" table
-  $stmt = mysqli_prepare($conn, "INSERT INTO booking (Bus_number, city, Destination, selectedSeat, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?)");
+  $stmt = mysqli_prepare($conn, "INSERT INTO booking (Bus_number, city, Destination, selectedSeat, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
   mysqli_stmt_bind_param($stmt, "ssssssss", $bus_number, $city, $destination, $selectedSeat, $fullName, $contactNumber, $email, $gender);
 
   if (mysqli_stmt_execute($stmt)) {

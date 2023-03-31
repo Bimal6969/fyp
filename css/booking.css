@@ -54,7 +54,7 @@ a:hover {
   cursor: pointer;
 }
 
-.booked {
+.seat.booked {
   background-color: red;
   color: white;
   cursor: not-allowed;

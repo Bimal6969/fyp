@@ -182,7 +182,8 @@ include("connection.php");
 </div>
 
 <script>
-    const seats = document.querySelectorAll('.seat');
+    // get all seat elements
+    const seats = document.querySelectorAll('.bus-layout .seat');
     const selectedSeat = [];
 
     seats.forEach(seat => {
@@ -202,15 +203,33 @@ include("connection.php");
   });
 });
 
-bookButton.addEventListener('click', () => {
-  const selectedSeats = document.querySelectorAll('.seat.selected');
-  
-  selectedSeats.forEach(selectedSeat => {
-    selectedSeat.classList.remove('selected');
-    selectedSeat.classList.add('booked');
-  });
-});
 
+// add event listener to book button
+// add event listener to book button
+const bookBtn = document.getElementById('book-btn');
+bookBtn.addEventListener('click', () => {
+    // Check if the form is filled out
+    const fullName = document.getElementById('fullName').value;
+    const contactNumber = document.getElementById('contactNumber').value;
+    const email = document.getElementById('email').value;
+    const gender = document.getElementById('gender').value;
+    if (!fullName || !contactNumber || !email || !gender) {
+        alert('Please fill out all fields before booking the seat.');
+        return;
+    }
+    // loop through each seat element
+    seats.forEach(seat => {
+        // if the seat is selected
+        if (seat.classList.contains('selected')) {
+            // add the booked class
+            seat.classList.add('booked');
+            // remove the selected class
+            seat.classList.remove('selected');
+            // disable the seat
+            // seat.setAttribute('disabled', true);
+        }
+    });
+});
 </script>
 <?php
 // Check if the form is submitted
@@ -231,7 +250,7 @@ if (isset($_POST['submit'])) {
     die("Connection failed: " . mysqli_connect_error());
   }
 
-  // Prepare and execute the SQL query to insert the user's information into the "booking" table
+  // Prepare and execute the sql query to insert the user's information into the "booking" table
   $stmt = mysqli_prepare($conn, "INSERT INTO booking (Bus_number, city, Destination, selectedSeat, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
   mysqli_stmt_bind_param($stmt, "ssssssss", $bus_number, $city, $destination, $selectedSeat, $fullName, $contactNumber, $email, $gender);
 

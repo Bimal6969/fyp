@@ -16,6 +16,7 @@ include("connection.php");?>
 			<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
 		</div>
 		<ul class="sidebar-menu">
+			<li><a href="dashboard.php">Dashboard</a></li>
 			<li><a href="displayroute.php">Manage Routes</a></li>
 			<li><a href="Managebuses.php">Manage Buses</a></li>
 			<li><a href="adminbooking.php">Booking Ticket</a></li>

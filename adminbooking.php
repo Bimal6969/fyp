@@ -1,6 +1,6 @@
 <?php
     include ("connection.php");
-    include ("adminpanel.php");
+    include ("sidebar.php");
     
 ?>
 <!DOCTYPE html>

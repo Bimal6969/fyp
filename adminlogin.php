@@ -67,7 +67,7 @@ if(isset($_POST['login'])){        //checks if the form was submitted with the n
 
         if(mysqli_num_rows($result) > 0){    //check the number of row returned. if 0 numb of row is return then it insert the username and password if not then processed to the login.
             $_SESSION['username'] = $username;
-            header("location:adminpanel.php");
+            header("location:dashboard.php");
         }
         else{
             // Insert the admin credentials into the database table
@@ -75,7 +75,7 @@ if(isset($_POST['login'])){        //checks if the form was submitted with the n
             mysqli_query($conn, $query);
 
             $_SESSION['username'] = $username;
-            header("location:adminpanel.php");
+            header("location:dashboard.php");
         }
     } else {
         echo'<script type="text/javascript">alert("Incorrect")</script>';

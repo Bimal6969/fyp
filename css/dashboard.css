@@ -1,0 +1,49 @@
+/* Add some margin to the left side of the main content area to accommodate the sidebar */
+main {
+    margin-left: 250px;
+  }
+  
+  /* Center the dashboard boxes horizontally and vertically */
+  .dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin: 30px 0; /* Remove the left margin and center the boxes vertically by using a top and bottom margin */
+    max-width: 1200px; /* Add a max-width to the container to prevent it from stretching too wide */
+    margin-left: 350px; /* Add a margin to move the boxes to the right */
+  }
+  
+  /* Style the dashboard boxes */
+  .dashboard-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px #eee;
+    padding: 20px;
+    margin: 20px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  /* Style the heading inside each box */
+  .dashboard-box h2 {
+    margin-bottom: 10px;
+  }
+  
+  /* Style the number inside each box */
+  .dashboard-box p {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+  }
+  
+  /* Add a light blue background color to the page */
+  body {
+    background-color: #f0f5f9;
+  }
+  

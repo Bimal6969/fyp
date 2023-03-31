@@ -46,23 +46,25 @@ a:hover {
   color: #fff;
 }
 
-.seat {
+.bus-layout .seat {
   display: inline-block;
-  padding: 10px;
-  margin: 5px;
-  border: 1px solid rgb(14, 185, 51);
-  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  background-color: white;
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  margin-right: 10px;
 }
-
-.seat.booked {
+.bus-layout .seat.selected {
+  background-color: yellow;
+}
+.bus-layout .seat.booked {
   background-color: red;
-  color: white;
   cursor: not-allowed;
 }
 
-.seat.selected {
-  background-color: rgb(212, 231, 9);
-}
 
 /* css for the passenger information */
 

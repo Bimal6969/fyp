@@ -64,12 +64,13 @@ $row = mysqli_fetch_assoc($result);
     <input type="text" id="email" name="email" value="<?php echo $row['email']; ?>" required>
 
     <label for="gender" style="display: block; margin-bottom: 5px; font-weight: bold;">Gender:</label>
-    <select id="gender" name="gender" required>
-    <option value="">Select gender</option>
-    <option value="male">Male</option>
-    <option value="female">Female</option>
-    <option value="other">Other</option>
-    </select><br>
+<select id="gender" name="gender" required>
+
+  <option value="">Select gender</option>
+  <option value="male"<?php if($row['gender'] == 'male') {echo ' selected';}?>>Male</option>
+  <option value="female"<?php if($row['gender'] == 'female') {echo ' selected';}?>>Female</option>
+  <option value="other"<?php if($row['gender'] == 'other') {echo ' selected';}?>>Other</option>
+</select><br>
 
     <input type="submit" name="update" value="Update" style="background-color: #4CAF50; color: white; margin-top:10px; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">
 

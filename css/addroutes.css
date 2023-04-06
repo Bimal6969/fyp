@@ -10,6 +10,25 @@ form {
     font-family: Arial, sans-serif;
     background-color: hwb(312 90% 6%);
 }
+select {
+    font-size: 16px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-shadow: none;
+    background-color: #fff;
+    color: #333;
+    width: 100%;
+    max-width: 400px;
+    margin-bottom: 20px;
+  }
+  
+  select:focus {
+    outline: none;
+    border-color: #0066cc;
+    box-shadow: 0 0 3px #0066cc;
+  }
+  
 input[type="text"], input[type="date"], input[type="time"], input[type="number"] {
     display: block;
     width: 100%;
@@ -43,3 +62,6 @@ button {
 button:hover {
     background-color: #3e8e41;
 }
+
+
+  

@@ -60,7 +60,7 @@
 
 <table>
     <tr>
-        <th> Id</th>
+        <th>Bus_Id</th>
         <th>Bus_number</th>
         <th>Mobile_number</th>
         <!-- <th>Bus Number</th>
@@ -75,9 +75,9 @@
         $result=(mysqli_query($conn,$sql));
         if($result){
             while($row=mysqli_fetch_assoc($result)){
-                $id=$row['ID'];
+                $id=$row['Bus_id'];
                 $Bus_number=$row['Bus_number'];
-                $Mobile_number=$row['Mobile_number'];
+                $Mobile_number=$row['mobile_number'];
                 // $bus_number=$row['Bus_number'];
                 // $departure_date=$row['Departure_date'];
                 // $departure_time=$row['Departure_time'];

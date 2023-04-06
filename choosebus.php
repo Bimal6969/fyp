@@ -60,17 +60,17 @@ include ("connection.php");
     </style>
     
 
-<table>
+    <table>
     <tr>
         <th> Id</th>
+        <th>Bus_id</th>
         <th>City</th>
         <th>Destination</th>
         <th>Bus Number</th>
         <th>Departure Date</th>
         <th>Departure Time</th>
         <th>Cost</th>
-        <th>Booking</th>
-        
+        <th>Book</th>
     </tr>
     <?php
         $sql="Select * from `routes`";
@@ -78,6 +78,7 @@ include ("connection.php");
         if($result){
             while($row=mysqli_fetch_assoc($result)){
                 $id=$row['Id'];
+                $Bus_id=$row['Bus_id'];
                 $city=$row['city'];
                 $destination=$row['Destination'];
                 $bus_number=$row['Bus_number'];
@@ -86,6 +87,7 @@ include ("connection.php");
                 $cost=$row['Cost'];
                 echo "<tr>
                 <td>".$id."</td>
+                <td>".$Bus_id."</td>
                 <td>".$city."</td>
                 <td>".$destination."</td>
                 <td>".$bus_number."</td>

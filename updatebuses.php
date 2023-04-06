@@ -5,14 +5,14 @@ $id = $_GET["updateid"];
 
 if(isset($_POST['updatebuses'])){
   $Bus_number = $_POST['Bus_number'];
-  $Mobile_number = $_POST['Mobile_number'];
+  $Mobile_number = $_POST['mobile_number'];
 //   $bus_number = $_POST['bus-number'];
 //   $departure_date = $_POST['departure-date'];
 //   $departure_time = $_POST['departure-time'];
 //   $cost = $_POST['cost']; 
   
   // Use prepared statement with parameter binding
-  $sql = "UPDATE buses SET Bus_number=?, Mobile_number=?, WHERE ID=?";
+  $sql = "UPDATE buses SET Bus_number=?, mobile_number=?, WHERE Bus_id=?";
   $stmt = mysqli_prepare($conn, $sql);
   mysqli_stmt_bind_param($stmt, "ssssssi", $Bus_number, $Mobile_number, $id);
   
@@ -25,7 +25,7 @@ if(isset($_POST['updatebuses'])){
 }
 
 // Get the current data for the specified route from the database
-$sql = "SELECT * FROM buses WHERE ID = $id";
+$sql = "SELECT * FROM buses WHERE Bus_id = $id";
 $result = mysqli_query($conn, $sql);
 $row = mysqli_fetch_assoc($result);
 
@@ -43,8 +43,8 @@ $row = mysqli_fetch_assoc($result);
     <label for="Bus_number">Bus_number:</label>
     <input type="text" id="Bus_number" name="Bus_number" value="<?php echo $row['Bus_number']; ?>"required>
 
-    <label for="Mobile_number">Mobile_number:</label>
-    <input type="text" id="Mobile_number" name="Mobile_number" value="<?php echo $row['Mobile_number']; ?>" required>
+    <label for="mobile_number">Mobile_number:</label>
+    <input type="text" id="mobile_number" name="mobile_number" value="<?php echo $row['mobile_number']; ?>" required>
 
     <!-- <label for="bus-number">Bus Number:</label>
     <input type="text" id="bus-number" name="bus-number" value="<?php echo $row['Bus_number']; ?>" required>

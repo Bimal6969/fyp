@@ -4,14 +4,14 @@ include("connection.php");
 
 if(isset($_POST['submit'])){
   $Bus_number=$_POST['Bus_number'];
-  $Mobile_number=$_POST['Mobile_number'];
+  $Mobile_number=$_POST['mobile_number'];
 //   $Bus_number=$_POST['bus-number'];
 //   $Departure_date=$_POST['departure-date'];
 //   $Departure_time=$_POST['departure-time'];
 //   $cost=$_POST['cost']; 
   
   // Use prepared statement with parameter binding
-  $stmt = mysqli_prepare($conn, "INSERT INTO buses (Bus_number, Mobile_number) VALUES (?, ?)");
+  $stmt = mysqli_prepare($conn, "INSERT INTO buses (Bus_number, mobile_number) VALUES (?, ?)");
   mysqli_stmt_bind_param($stmt, "sd", $Bus_number, $Mobile_number,);
   
   if(mysqli_stmt_execute($stmt)){
@@ -31,11 +31,14 @@ if(isset($_POST['submit'])){
 <body>
     
 <form method="POST"> 
+<!-- <label for="Bus_id">Bus_id:</label>
+  <input type="text" id="Bus_id" name="Bus_id" required> -->
+
   <label for="Bus_number">Bus_number:</label>
   <input type="text" id="Bus_number" name="Bus_number" required>
 
-  <label for="Mobile_number">Mobile_number:</label>
-  <input type="text" id="Mobile_number" name="Mobile_number" required>
+  <label for="mobile_number">Mobile_number:</label>
+  <input type="text" id="mobile_number" name="mobile_number" required>
 
   <!-- <label for="bus-number">Bus Number:</label>
   <input type="text" id="bus-number" name="bus-number" required>

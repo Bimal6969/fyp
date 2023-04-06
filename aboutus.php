@@ -45,12 +45,12 @@
 		<section>
 			<h2>Testimonials</h2>
 			<blockquote>
-				<p>"I love using this website to book my bus tickets. It's so easy and convenient, and I always find the best prices here!"</p>
-				<cite>- utkarsh</cite>
+				<p>"I hate using this website to book my bus tickets. It's so hard and inconvenient, and I always find the worst prices here!"</p>
+				<cite>- Utkarsh</cite>
 			</blockquote>
 			<blockquote>
 				<p>"I had a problem with my booking and contacted customer support. They were extremely helpful and resolved the issue quickly. I highly recommend this service!"</p>
-				<cite>- kailash</cite>
+				<cite>- Kailash</cite>
 			</blockquote>
 		</section>
 	</main>

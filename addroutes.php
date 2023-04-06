@@ -2,7 +2,20 @@
 session_start();
 include("connection.php");
 
+// Retrieve bus IDs from database
+$query = "SELECT Bus_id FROM buses";
+$result = mysqli_query($conn, $query);
+
+// Initialize empty array to store bus IDs
+$bus_ids = array();
+
+// Loop through query results and append bus IDs to array
+while ($row = mysqli_fetch_assoc($result)) {
+  $bus_ids[] = $row['Bus_id'];
+}
+
 if(isset($_POST['submit'])){
+  $bus_id=$_POST['Bus_id'];
   $City=$_POST['city'];
   $Destination=$_POST['destination'];
   $Bus_number=$_POST['bus-number'];
@@ -11,8 +24,8 @@ if(isset($_POST['submit'])){
   $cost=$_POST['cost']; 
   
   // Use prepared statement with parameter binding
-  $stmt = mysqli_prepare($conn, "INSERT INTO routes (City, Destination, Bus_number, Departure_date, Departure_time, cost) VALUES (?, ?, ?, ?, ?, ?)");
-  mysqli_stmt_bind_param($stmt, "sssssd", $City, $Destination, $Bus_number, $Departure_date, $Departure_time, $cost);
+  $stmt = mysqli_prepare($conn, "INSERT INTO routes (Bus_id, City, Destination, Bus_number, Departure_date, Departure_time, cost) VALUES (?, ?, ?, ?, ?, ?, ?)");
+  mysqli_stmt_bind_param($stmt, "isssssd", $bus_id, $City, $Destination, $Bus_number, $Departure_date, $Departure_time, $cost);
   
   if(mysqli_stmt_execute($stmt)){
     echo "successful";
@@ -31,6 +44,13 @@ if(isset($_POST['submit'])){
 <body>
     
 <form method="POST"> 
+<label for="Bus_id" style="font-weight: bold;">Bus ID:</label>
+<select id="Bus_id" name="Bus_id" required style="padding: 5px; margin-top: 5px; margin-bottom: 5px;">
+  <?php foreach ($bus_ids as $id) { ?>
+    <option value="<?php echo $id; ?>"><?php echo $id; ?></option>
+  <?php } ?>
+</select>
+
   <label for="city">City:</label>
   <input type="text" id="city" name="city" required>
 

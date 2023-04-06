@@ -61,6 +61,7 @@
 <table>
     <tr>
         <th> Id</th>
+        <th>Bus_id</th>
         <th>City</th>
         <th>Destination</th>
         <th>Bus Number</th>
@@ -76,6 +77,7 @@
         if($result){
             while($row=mysqli_fetch_assoc($result)){
                 $id=$row['Id'];
+                $Bus_id=$row['Bus_id'];
                 $city=$row['city'];
                 $destination=$row['Destination'];
                 $bus_number=$row['Bus_number'];
@@ -84,6 +86,7 @@
                 $cost=$row['Cost'];
                 echo "<tr>
                 <td>".$id."</td>
+                <td>".$Bus_id."</td>
                 <td>".$city."</td>
                 <td>".$destination."</td>
                 <td>".$bus_number."</td>

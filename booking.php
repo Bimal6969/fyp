@@ -182,6 +182,17 @@ include("connection.php");
 </div>
 
 <script>
+
+    // booked seats
+    const bookedSeats = ['B9', 'B2'];
+
+    const collectionOfSeats = document.querySelectorAll('.seat');
+    console.log(collectionOfSeats);
+    collectionOfSeats.forEach(seat=>{
+        if(bookedSeats.includes(seat.dataset.seat))
+        seat.classList.add('booked');
+    })
+
     // get all seat elements
     const seats = document.querySelectorAll('.bus-layout .seat');
     const selectedSeat = [];
@@ -263,6 +274,26 @@ if (isset($_POST['submit'])) {
   // Close the database connection
   mysqli_close($conn);
 }
+
+
+/**
+ * Buses
+ * id | busnumber
+ * 1 | BA123
+ * 2 | BA211
+ * 
+ * Booking
+ * id | bus_id | seat_id | client_id
+ * 1  | 2      | 1       | 1
+ * 2  | 1      | 5       | 1
+ * 3  | 2      | 2       | 2
+ * 
+ * 
+ * 
+ * $query = "SELECT * FROM booking where bus_id = 2";  
+ * 
+ * 
+ */
 ?>
 
 </body>

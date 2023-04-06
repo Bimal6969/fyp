@@ -58,19 +58,20 @@ if (isset($_POST['login'])) {
   $username = $_POST['username'];
   $password = $_POST['password'];
 
-  // Query the database to retrieve the user's hashed password based on the username provided
-  $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE email = ?");
+  // Check if the login information exists in the owner_info table
+  $stmt = mysqli_prepare($conn, "SELECT * FROM owner_info WHERE email = ?");
   mysqli_stmt_bind_param($stmt, "s", $username);
   mysqli_stmt_execute($stmt);
   $result = mysqli_stmt_get_result($stmt);
 
   if (mysqli_num_rows($result) == 1) {
-    // Use the password_verify function to compare the entered password with the retrieved hashed password
     $row = mysqli_fetch_assoc($result);
-    if (password_verify($password, $row['password'])) {
-      // If the passwords match, create a session for the user and redirect them to a protected page
+    // Compare the entered password with the stored plain text password
+    if ($password == $row['password']) {
+      // If the passwords match, create a session for the owner and redirect them to the owner dashboard
       $_SESSION['username'] = $username;
-      header("Location: choosebus.php");
+      $_SESSION['user_type'] = 'owner';
+      header("Location: owner_dashboard.php");
       exit();
     } else {
       // If the passwords don't match, show an error message
@@ -78,11 +79,34 @@ if (isset($_POST['login'])) {
       $_SESSION['msg_type'] = "error";
     }
   } else {
-    // If the user doesn't exist, show an error message
-    $_SESSION['message'] = "User not found";
-    $_SESSION['msg_type'] = "error";
+    // If the login information is not found in the owner_info table, check in the users table
+    $stmt = mysqli_prepare($conn, "SELECT * FROM users WHERE email = ?");
+    mysqli_stmt_bind_param($stmt, "s", $username);
+    mysqli_stmt_execute($stmt);
+    $result = mysqli_stmt_get_result($stmt);
+
+    if (mysqli_num_rows($result) == 1) {
+      $row = mysqli_fetch_assoc($result);
+      // Use the password_verify function to compare the entered password with the retrieved hashed password
+      if (password_verify($password, $row['password'])) {
+        // If the passwords match, create a session for the user and redirect them to the choosebus.php page
+        $_SESSION['username'] = $username;
+        $_SESSION['user_type'] = 'user';
+        header("Location: choosebus.php");
+        exit();
+      } else {
+        // If the passwords don't match, show an error message
+        $_SESSION['message'] = "Incorrect password";
+        $_SESSION['msg_type'] = "error";
+      }
+    } else {
+      // If the user doesn't exist, show an error message
+      $_SESSION['message'] = "User not found";
+      $_SESSION['msg_type'] = "error";
+    }
   }
 }
+
 ?>
 
 

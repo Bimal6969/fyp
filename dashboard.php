@@ -6,6 +6,7 @@ include('sidebar.php');
 <html lang="en">
 <head>
 <link rel="stylesheet" href="css/dashboard.css">
+<h1 style="text-align: center;">Welcome to the Admin Panel</h1>
    <title>Document</title>
 </head>
     <body>

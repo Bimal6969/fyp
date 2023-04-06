@@ -49,8 +49,7 @@
         </div>
       </div>
     </div>
-
-    <?php
+ <?php
 session_start();
 include ("connection.php");
 
@@ -66,8 +65,8 @@ if (isset($_POST['login'])) {
 
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
-    // Compare the entered password with the stored plain text password
-    if ($password == $row['password']) {
+    // Use the password_verify function to compare the entered password with the retrieved hashed password
+    if (password_verify($password, $row['password'])) {
       // If the passwords match, create a session for the owner and redirect them to the owner dashboard
       $_SESSION['username'] = $username;
       $_SESSION['user_type'] = 'owner';

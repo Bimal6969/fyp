@@ -69,6 +69,14 @@ if (isset($_POST['submit'])) {
   $gender = ($_POST['gender']);
   $dob = ($_POST['dob']);
 
+  // Check if the email address is valid
+  if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+    $_SESSION['message'] = "Invalid email address";
+    $_SESSION['msg_type'] = "error";
+    header("location: registration.php");
+    exit();
+  }
+
   // Check if the passwords match
   // if ($password != $confirmpassword) {
   //   $_SESSION['message'] = "The passwords do not match";

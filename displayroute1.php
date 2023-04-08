@@ -1,22 +1,17 @@
 <?php
-include ("connection.php");
-
+    include ("connection.php");
+    include ("ownersidebar.php");
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>choose bus</title>
-</head>
-<body>
-<h1 style="text-align: center;">Choose your bus</h1>
+    <title>Routes Table</title>
     <style>
         table {
             border-collapse: collapse;
             width: 80%;
-            margin-left:168px;
+            margin-left:270px;
         }
         th, td {
             text-align: left;
@@ -27,7 +22,7 @@ include ("connection.php");
             color: white;
         }
         tr:nth-child(even){background-color: #f2f2f2}
-        .book-btn {
+        .add-route-btn {
             display: inline-block;
             background-color: #4CAF50;
             color: white;
@@ -41,7 +36,7 @@ include ("connection.php");
             border: none;
             cursor: pointer;
         }
-        /* .update-btn, .delete-btn {
+        .update-btn, .delete-btn {
             display: inline-block;
             background-color: #555555;
             color: white;
@@ -56,11 +51,14 @@ include ("connection.php");
         }
         .update-btn:hover, .delete-btn:hover {
             background-color: #333333;
-        } */
+        }
     </style>
-    
+</head>
+<body>
 
-    <table>
+<a href="addroutes1.php" class="add-route-btn">Add Route</a>
+
+<table>
     <tr>
         <th> Id</th>
         <th>Bus_id</th>
@@ -70,7 +68,8 @@ include ("connection.php");
         <th>Departure Date</th>
         <th>Departure Time</th>
         <th>Cost</th>
-        <th>Book</th>
+        <th>Update</th>
+        <th>Delete</th>
     </tr>
     <?php
         $sql="Select * from `routes`";
@@ -94,11 +93,14 @@ include ("connection.php");
                 <td>".$departure_date."</td>
                 <td>".$departure_time."</td>
                 <td>".$cost."</td>
-                <td><button><a href='booking.php?Bus_id=".$Bus_id."&Bus_number=".$bus_number."&city=".$city."&Destination=".$destination."&departure_date=".$departure_date."&departure_time=".$departure_time."&cost=".$cost."'>Book now</a></button></td>
-              </tr>";              
+                <td><button><a href=update.php?updateid=".$id.">Update</a></button></td>
+                <td><button><a href=delete.php?deleteid=".$id.">Delete</a></button></td>
+              </tr>";
             }
            
         }
     ?>
+</table>
+
 </body>
 </html>

@@ -1,6 +1,7 @@
 <?php
 include("connection.php");
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -154,11 +155,16 @@ include("connection.php");
 <div class="form-container">
 <form method="POST">
 <h3>Passenger Information</h3>
-  <input type="hidden" name="Bus_number" value="<?php echo $_GET['Bus_number']; ?>">
+  <input type="hidden" name="Bus_id" value="<?php echo $_GET['Bus_id']; ?>">
   <input type="hidden" name="city" value="<?php echo $_GET['city']; ?>">
   <input type="hidden" name="Destination" value="<?php echo $_GET['Destination']; ?>">
-  <label for="selectedSeats">Selected Seats:</label>
-  <input type="text" id="selectedSeat" name="selectedSeat" value="">
+  <input type="hidden" name="Bus_number" value="<?php echo $_GET['Bus_number']; ?>">
+  <input type="hidden" name="departure_date" value="<?php echo $_GET['departure_date']; ?>">
+  <input type="hidden" name="departure_time" value="<?php echo $_GET['departure_time']; ?>">
+  <input type="hidden" name="cost" value="<?php echo $_GET['cost']; ?>">
+  
+  <label for="seat_id">seat Id:</label>
+  <input type="text" id="seat_id" name="seat_id" value="">
   <br>
   <label for="fullName">Full Name:</label>
   <input type="text" id="fullName" name="fullName" required>
@@ -180,121 +186,30 @@ include("connection.php");
   <button id="book-btn" class="login" type="submit" name="submit">Book</button>
 </form>
 </div>
-
-<script>
-
-    // booked seats
-    const bookedSeats = ['B9', 'B2'];
-
-    const collectionOfSeats = document.querySelectorAll('.seat');
-    console.log(collectionOfSeats);
-    collectionOfSeats.forEach(seat=>{
-        if(bookedSeats.includes(seat.dataset.seat))
-        seat.classList.add('booked');
-    })
-
-    // get all seat elements
-    const seats = document.querySelectorAll('.bus-layout .seat');
-    const selectedSeat = [];
-
-    seats.forEach(seat => {
-    seat.addEventListener('click', () => {
-        if (!seat.classList.contains('booked')) {
-        const seatNumber = seat.getAttribute('data-seat');
-        const index = selectedSeat.indexOf(seatNumber);
-        if (index >= 0) {
-        selectedSeat.splice(index, 1);
-        seat.classList.remove('selected');
-      } else {
-        selectedSeat.push(seatNumber);
-        seat.classList.add('selected');
-      }
-      document.getElementById('selectedSeat').value = selectedSeat.join(', ');
-    }
-  });
-});
-
-
-// add event listener to book button
-// add event listener to book button
-const bookBtn = document.getElementById('book-btn');
-bookBtn.addEventListener('click', () => {
-    // Check if the form is filled out
-    const fullName = document.getElementById('fullName').value;
-    const contactNumber = document.getElementById('contactNumber').value;
-    const email = document.getElementById('email').value;
-    const gender = document.getElementById('gender').value;
-    if (!fullName || !contactNumber || !email || !gender) {
-        alert('Please fill out all fields before booking the seat.');
-        return;
-    }
-    // loop through each seat element
-    seats.forEach(seat => {
-        // if the seat is selected
-        if (seat.classList.contains('selected')) {
-            // add the booked class
-            seat.classList.add('booked');
-            // remove the selected class
-            seat.classList.remove('selected');
-            // disable the seat
-            // seat.setAttribute('disabled', true);
-        }
-    });
-});
-</script>
 <?php
-// Check if the form is submitted
-if (isset($_POST['submit'])) {
+$query = "SELECT s.seat_number, s.seat_type FROM bus_seats bs 
+              INNER JOIN seats s ON bs.seat_id = s.seat_id 
+              WHERE bs.bus_id = $bus_id";
+    $result = mysqli_query($conn, $query);
 
-  // Retrieve the user's information from the form
-  $bus_number =$_POST['Bus_number'];
-  $city = $_POST['city'];
-  $destination = $_POST['Destination'];
-  $selectedSeat = $_POST['selectedSeat'];
-  $fullName = $_POST['fullName'];
-  $contactNumber = $_POST['contactNumber'];
-  $email = $_POST['email'];
-  $gender = $_POST['gender'];
-
-  // Check if the connection is successful
-  if (!$conn) {
-    die("Connection failed: " . mysqli_connect_error());
-  }
-
-  // Prepare and execute the sql query to insert the user's information into the "booking" table
-  $stmt = mysqli_prepare($conn, "INSERT INTO booking (Bus_number, city, Destination, selectedSeat, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-  mysqli_stmt_bind_param($stmt, "ssssssss", $bus_number, $city, $destination, $selectedSeat, $fullName, $contactNumber, $email, $gender);
-
-  if (mysqli_stmt_execute($stmt)) {
-    echo "Booking Successful!";
-  } else {
-    echo "Booking Failed!";
-  }
-
-  // Close the database connection
-  mysqli_close($conn);
-}
-
-
-/**
- * Buses
- * id | busnumber
- * 1 | BA123
- * 2 | BA211
- * 
- * Booking
- * id | bus_id | seat_id | client_id
- * 1  | 2      | 1       | 1
- * 2  | 1      | 5       | 1
- * 3  | 2      | 2       | 2
- * 
- * 
- * 
- * $query = "SELECT * FROM booking where bus_id = 2";  
- * 
- * 
- */
-?>
+    // Loop through the result set and generate the HTML for the seat layout
+    while ($row = mysqli_fetch_assoc($result)) {
+        $seat_number = $row['seat_number'];
+        $seat_type = $row['seat_type'];
+        
+        // Generate the HTML for the seat based on its type (available or booked)
+        $seat_html = "<a class='seat";
+        if ($seat_type == 'booked') {
+            $seat_html .= " booked";
+        } else {
+            $seat_html .= " available";
+        }
+        $seat_html .= "' data-seat='$seat_number'>$seat_number</a>";
+        
+        // Output the seat HTML
+        echo "<td>$seat_html</td>";
+    }
+    ?>
 
 </body>
 

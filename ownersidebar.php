@@ -17,8 +17,8 @@ include("connection.php");?>
 		</div>
 		<ul class="sidebar-menu">
 			<li><a href="ownerdashboard.php">Dashboard</a></li>
-			<li><a href="displayroute1.php">Manage Routes</a></li>
 			<li><a href="Managebuses1.php">Manage Buses</a></li>
+			<li><a href="displayroute1.php">Manage Routes</a></li>
 			<li><a href="adminbooking1.php">Booking Ticket</a></li>
 			<li><a href="displaymessageowner.php">Message</a></li>
 			<li><a href="login.php">Logout</a></li>

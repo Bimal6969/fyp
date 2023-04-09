@@ -1,5 +1,43 @@
 <?php
 include("connection.php");
+
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+
+    // Retrieve the user's information from the form
+    $bus_id =$_POST['Bus_id'];
+    $city = $_POST['city'];
+    $destination = $_POST['Destination'];
+    $bus_number = $_POST['Bus_number'];
+    $departure_date = $_POST['departure_date'];
+    $departure_time = $_POST['departure_time'];
+    $cost = $_POST['cost'];
+    $seat_id = $_POST['seat_id'];
+    $fullName = $_POST['fullName'];
+    $contactNumber = $_POST['contactNumber'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+  
+    // Check if the connection is successful
+    if (!$conn) {
+      die("Connection failed: " . mysqli_connect_error());
+    }
+  
+    // Prepare and execute the sql query to insert the user's information into the "booking" table
+    $stmt = mysqli_prepare($conn, "INSERT INTO booking (bus_id, city, destination, bus_number, departure_date, departure_time, cost, seat_id, full_name, contact_number, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+
+    // Bind the variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "ssssssssssss", $bus_id, $city, $destination, $bus_number, $departure_date, $departure_time, $cost, $seat_id, $fullName, $contactNumber, $email, $gender);
+    if (mysqli_stmt_execute($stmt)) {
+      echo "Booking Successful!";
+    } else {
+      echo "Booking Failed!";
+    }
+  
+    // Close the database connection
+    mysqli_close($conn);
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -186,31 +224,51 @@ include("connection.php");
   <button id="book-btn" class="login" type="submit" name="submit">Book</button>
 </form>
 </div>
-<?php
-$query = "SELECT s.seat_number, s.seat_type FROM bus_seats bs 
-              INNER JOIN seats s ON bs.seat_id = s.seat_id 
-              WHERE bs.bus_id = $bus_id";
-    $result = mysqli_query($conn, $query);
+<script>
+    // Get all seat elements on the page
+var seatElements = document.querySelectorAll('.seat');
 
-    // Loop through the result set and generate the HTML for the seat layout
-    while ($row = mysqli_fetch_assoc($result)) {
-        $seat_number = $row['seat_number'];
-        $seat_type = $row['seat_type'];
-        
-        // Generate the HTML for the seat based on its type (available or booked)
-        $seat_html = "<a class='seat";
-        if ($seat_type == 'booked') {
-            $seat_html .= " booked";
+// Add a click event listener to each seat element
+seatElements.forEach(function(seatElement) {
+  seatElement.addEventListener('click', function(event) {
+    // Get the seat ID from the data-seat attribute
+    var seatId = event.target.getAttribute('data-seat');
+
+    // Use the bus ID and seat ID to check seat availability on the server
+    // ...
+
+    // Create a new XMLHttpRequest object
+    var xhr = new XMLHttpRequest();
+
+    // Define the callback function to handle the response
+    xhr.onreadystatechange = function() {
+      if (xhr.readyState === 4 && xhr.status === 200) {
+        // Handle the response from the server
+        var availability = xhr.responseText;
+        console.log('Seat availability:', availability);
+
+        // Change the color of the seat based on availability
+        if (availability === 'unavailable') {
+          seatElement.style.backgroundColor = 'red';
         } else {
-            $seat_html .= " available";
+          seatElement.style.backgroundColor = 'yellow';
         }
-        $seat_html .= "' data-seat='$seat_number'>$seat_number</a>";
-        
-        // Output the seat HTML
-        echo "<td>$seat_html</td>";
-    }
-    ?>
+      }
+    };
 
+    // Get the bus ID from PHP
+var busId = <?php echo json_encode($bus_id); ?>;
+
+// Open the XMLHttpRequest with the GET method and the URL for the server endpoint
+xhr.open('GET', `check_seat_availability.php?bus_id=${busId}&seat_id=${seatId}`, true);
+
+
+    // Send the XMLHttpRequest
+    xhr.send();
+  });
+});
+
+</script>
 </body>
 
 </html>

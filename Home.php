@@ -7,8 +7,11 @@
   <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body>
+  <?php
+    include("navbar.php");
+  ?>
   <!--navbar-->
-  <nav>
+  <!-- <nav>
         <div class="nav-left">
           <div class="logo">
             <a href="#">Logo</a>
@@ -26,7 +29,7 @@
             <li><a href="registration.php">Register</a></li>
           </ul>
         </div>
-      </nav>
+      </nav> -->
 
   <!--main body-->
 	<div class="hero-image">

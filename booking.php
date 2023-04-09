@@ -52,6 +52,24 @@ if (isset($_POST['submit'])) {
 </head>
 
 <body>
+<style>
+    body {
+      background-image: url('image/image6.jpg');
+      background-size: cover;
+      background-repeat: no-repeat;
+    }
+    .bus-layout .seat {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(14, 193, 11);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+  margin-right: 10px;
+}
+  </style>
     <h1>Seat Booking</h1>
     <div class="bus-layout">
         <table class="seating-layout">

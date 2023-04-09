@@ -13,22 +13,22 @@ include("connection.php");?>
 	<div class="sidebar">
 		<div class="sidebar-header">
 			<h2>Admin Panel</h2>
-			<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+			<!-- <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button> -->
 		</div>
 		<ul class="sidebar-menu">
 			<li><a href="ownerdashboard.php">Dashboard</a></li>
 			<li><a href="Managebuses1.php">Manage Buses</a></li>
 			<li><a href="displayroute1.php">Manage Routes</a></li>
-			<li><a href="adminbooking1.php">Booking Ticket</a></li>
+			<li><a href="ownerbooking.php">Booking Ticket</a></li>
 			<li><a href="displaymessageowner.php">Message</a></li>
 			<li><a href="login.php">Logout</a></li>
 		</ul>
 	</div>
-	<script>
+	<!-- <script>
 		function toggleSidebar() {
 			document.querySelector('.sidebar').classList.toggle('collapsed');
 		}
-	</script>
+	</script> -->
 
 </body>
 </html>

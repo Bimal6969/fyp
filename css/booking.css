@@ -1,10 +1,10 @@
 body{
-  background-color: #daedd6;
+  background-color: #edf6ed;
   overflow: hidden;
 }
 
 .bus-layout td {
-  border: 2px solid #ccc;
+  border: 2px solid #100f0f;
   padding: 10px;
   width:50%;
   height: 50%;
@@ -31,7 +31,7 @@ td {
 }
 
 a {
-  background-color: #e6e6e6;
+  background-color: #595757;
   border-radius: 18px;
   display: inline-block;
   font-size: 13px;
@@ -46,17 +46,6 @@ a:hover {
   color: #fff;
 }
 
-.bus-layout .seat {
-  display: inline-block;
-  width: 30px;
-  height: 30px;
-  background-color: white;
-  border: 1px solid black;
-  text-align: center;
-  font-size: 14px;
-  line-height: 30px;
-  margin-right: 10px;
-}
 .bus-layout .seat.selected {
   background-color: yellow;
 }

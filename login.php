@@ -1,55 +1,4 @@
-
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Login to your account</title>
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-    <link rel="stylesheet" type="text/css" href="css/navbar.css">
-   <!-- <link rel="stylesheet" type="text/css" href="css/footer.css">-->
-  </head>
-  <body>
-    <!--nav bar start here -->
-     <nav>
-        <div class="nav-left">
-          <div class="logo">
-            <a href="#">Logo</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="Home.php">Home</a></li>
-            <li><a href="aboutus.php">About Us</a></li>
-            <li><a href="bookticket.php">Book Ticket</a></li>
-            <li><a href="contactus.php">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="nav-right">
-          <ul class="login-register">
-            <li><a href="loginmenu.php">Login /</a></li>
-            <li><a href="registration.php">Register</a></li>
-          </ul>
-        </div>
-      </nav> 
-
-    <!--main body is here-->
-   
-
-    <div class="container">
-      <div class="login-box">
-        <div class="login-header">
-          <h1>Login to your account</h1>
-        </div>
-        <div class="login-body">
-          <form method="POST">
-            <label for="username">E-mail:</label>
-            <input type="text" id="username" name="username" placeholder="Enter your email">
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" placeholder="Enter your password">
-            <button type="submit" name="login">Log In</button>
-            <!-- <a href="#">Forgot Password?</a> -->
-          </form>
-        </div>
-      </div>
-    </div>
- <?php
+<?php
 session_start();
 include ("connection.php");
 
@@ -108,7 +57,73 @@ if (isset($_POST['login'])) {
 
 ?>
 
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Login to your account</title>
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/navbar.css">
+   <!-- <link rel="stylesheet" type="text/css" href="css/footer.css">-->
+  </head>
+  <body>
+    <style>
+    .login-box {
+  width: 350px;
+  padding: 40px;
+  border: 1px solid #ccc;
+  box-shadow: 0 0 20px #ccc;
+  background-color: #fff;
+}
+</style>
+    <?php
+      include("navbar.php");
+    ?>
+    <!--nav bar start here -->
+     <!-- <nav>
+        <div class="nav-left">
+          <div class="logo">
+            <a href="#">Logo</a>
+          </div>
+          <ul class="nav-links">
+            <li><a href="Home.php">Home</a></li>
+            <li><a href="aboutus.php">About Us</a></li>
+            <li><a href="bookticket.php">Book Ticket</a></li>
+            <li><a href="contactus.php">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="nav-right">
+          <ul class="login-register">
+            <li><a href="loginmenu.php">Login /</a></li>
+            <li><a href="registration.php">Register</a></li>
+          </ul>
+        </div>
+      </nav>  -->
 
+    <!--main body is here-->
+   
+
+    <div class="container">
+      <div class="login-box">
+        <div class="login-header">
+          <h1>Login to your account</h1>
+          <?php 
+    if(isset($_SESSION['message'])) {
+      echo "<p>{$_SESSION['message']}</p>";
+      unset($_SESSION['message']); // remove the message once displayed
+    }?>
+        </div>
+        <div class="login-body">
+          <form method="POST">
+            <label for="username">E-mail:</label>
+            <input type="text" id="username" name="username" placeholder="Enter your email">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter your password">
+            <button type="submit" name="login">Log In</button>
+            <!-- <a href="#">Forgot Password?</a> -->
+          </form>
+        </div>
+      </div>
+    </div>
 
     <!--footer start here-->
     <footer>

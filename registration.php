@@ -54,6 +54,11 @@ if (isset($_POST['submit'])) {
     <link rel="stylesheet" type="text/css" href="css/footer.css">
 </head>
 <body>
+  <style>
+    body{
+      background-image: url('image/image7.jpg');
+    }
+  </style>
   <?php
     include("navbar.php");
   ?>

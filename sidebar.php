@@ -20,7 +20,7 @@ include("connection.php");?>
 			<li><a href="displayroute.php">Manage Routes</a></li>
 			<li><a href="Managebuses.php">Manage Buses</a></li>
 			<li><a href="adminbooking.php">Booking Ticket</a></li>
-			<li><a href="add_owner.php">Owner</a></li>
+			<li><a href="add_owner.php">Add Owner</a></li>
 			<li><a href="displaymessage.php">Message</a></li>
 			<li><a href="adminlogin.php">Logout</a></li>
 		</ul>

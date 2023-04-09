@@ -31,8 +31,6 @@ if(isset($_POST['submit'])){
 <body>
     
 <form method="POST"> 
-<!-- <label for="Bus_id">Bus_id:</label>
-  <input type="text" id="Bus_id" name="Bus_id" required> -->
 
   <label for="Bus_number">Bus_number:</label>
   <input type="text" id="Bus_number" name="Bus_number" required>

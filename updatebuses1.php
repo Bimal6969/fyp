@@ -3,7 +3,7 @@ session_start();
 include("connection.php");
 $id = $_GET["updateid"];
 
-if(isset($_POST['updatebuses'])){
+if(isset($_POST['update'])){
   $Bus_number = $_POST['Bus_number'];
   $Mobile_number = $_POST['mobile_number'];
 //   $bus_number = $_POST['bus-number'];
@@ -12,9 +12,9 @@ if(isset($_POST['updatebuses'])){
 //   $cost = $_POST['cost']; 
   
   // Use prepared statement with parameter binding
-  $sql = "UPDATE buses SET Bus_number=?, mobile_number=?, WHERE Bus_id=?";
+  $sql = "UPDATE buses SET Bus_number=?, mobile_number=? WHERE Bus_id=?";
   $stmt = mysqli_prepare($conn, $sql);
-  mysqli_stmt_bind_param($stmt, "ssssssi", $Bus_number, $Mobile_number, $id);
+  mysqli_stmt_bind_param($stmt, "ssi", $Bus_number, $Mobile_number, $id);
   
   if(mysqli_stmt_execute($stmt)){
     echo "successful";

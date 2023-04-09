@@ -27,8 +27,10 @@ if(isset($_POST['update'])){
     echo "successful";
     header("location:displayroute1.php");
   }else{
+    header("location:displayroute1.php");
     die("Failed to connect!");
   }
+
 }
 
 // Get the current data for the specified route from the database

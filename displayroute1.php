@@ -93,8 +93,8 @@
                 <td>".$departure_date."</td>
                 <td>".$departure_time."</td>
                 <td>".$cost."</td>
-                <td><button><a href=update.php?updateid=".$id.">Update</a></button></td>
-                <td><button><a href=delete.php?deleteid=".$id.">Delete</a></button></td>
+                <td><button><a href=update1.php?updateid=".$id.">Update</a></button></td>
+                <td><button><a href=delete1.php?deleteid=".$id.">Delete</a></button></td>
               </tr>";
             }
            

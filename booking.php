@@ -3,7 +3,6 @@ include("connection.php");
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
-
     // Retrieve the user's information from the form
     $bus_id =$_POST['Bus_id'];
     $city = $_POST['city'];
@@ -18,26 +17,36 @@ if (isset($_POST['submit'])) {
     $email = $_POST['email'];
     $gender = $_POST['gender'];
   
-    // Check if the connection is successful
-    if (!$conn) {
-      die("Connection failed: " . mysqli_connect_error());
-    }
-  
-    // Prepare and execute the sql query to insert the user's information into the "booking" table
-    $stmt = mysqli_prepare($conn, "INSERT INTO booking (bus_id, city, destination, bus_number, departure_date, departure_time, cost, seat_id, full_name, contact_number, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Prepare and execute the sql query to insert the user's information into the "bookings" table
+    $stmt = mysqli_prepare($conn, "INSERT INTO `bookings` (Bus_id, city, Destination, Bus_number, departure_date, departure_time, cost, seat_id, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
 
     // Bind the variables to the prepared statement as parameters
     mysqli_stmt_bind_param($stmt, "ssssssssssss", $bus_id, $city, $destination, $bus_number, $departure_date, $departure_time, $cost, $seat_id, $fullName, $contactNumber, $email, $gender);
     if (mysqli_stmt_execute($stmt)) {
-      echo "Booking Successful!";
+        echo "Booking Successful!";
     } else {
-      echo "Booking Failed!";
+        echo "Booking Failed!";
     }
-  
+
     // Close the database connection
     mysqli_close($conn);
-  }
+}
+if (isset($_POST['seat_id'])) {
+    $seatId = $_POST['seat_id'];
   
+    // Check if the seat is available
+    $query = "SELECT * FROM seats WHERE seat_id = '$seatId' AND is_booked = 0";
+    $result = mysqli_query($conn, $query);
+  
+    if (mysqli_num_rows($result) > 0) {
+      // Book the seat
+      $query = "UPDATE seats SET is_booked = 1 WHERE seat_id = '$seatId'";
+      mysqli_query($conn, $query);
+      $message = 'Seat booked successfully';
+    } else {
+      echo 'Seat is already booked';
+    }
+  }
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +77,12 @@ if (isset($_POST['submit'])) {
   font-size: 14px;
   line-height: 30px;
   margin-right: 10px;
+}
+table{
+    background-color:#fff;
+}
+h1{
+    text-align:center;
 }
   </style>
     <h1>Seat Booking</h1>
@@ -243,47 +258,48 @@ if (isset($_POST['submit'])) {
 </form>
 </div>
 <script>
-    // Get all seat elements on the page
-var seatElements = document.querySelectorAll('.seat');
+  const seats = document.querySelectorAll('.seat');
+const seatIdField = document.getElementById('seat_id');
+const bookBtn = document.getElementById('book-btn');
 
-// Add a click event listener to each seat element
-seatElements.forEach(function(seatElement) {
-  seatElement.addEventListener('click', function(event) {
-    // Get the seat ID from the data-seat attribute
-    var seatId = event.target.getAttribute('data-seat');
+seats.forEach(seat => {
+  seat.addEventListener('click', () => {
+    // Remove "selected" class from all seats
+    seats.forEach(s => s.classList.remove('selected'));
 
-    // Use the bus ID and seat ID to check seat availability on the server
-    // ...
+    // Add "selected" class to clicked seat
+    seat.classList.add('selected');
 
-    // Create a new XMLHttpRequest object
-    var xhr = new XMLHttpRequest();
-
-    // Define the callback function to handle the response
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        // Handle the response from the server
-        var availability = xhr.responseText;
-        console.log('Seat availability:', availability);
-
-        // Change the color of the seat based on availability
-        if (availability === 'unavailable') {
-          seatElement.style.backgroundColor = 'red';
-        } else {
-          seatElement.style.backgroundColor = 'yellow';
-        }
-      }
-    };
-
-    // Get the bus ID from PHP
-var busId = <?php echo json_encode($bus_id); ?>;
-
-// Open the XMLHttpRequest with the GET method and the URL for the server endpoint
-xhr.open('GET', `check_seat_availability.php?bus_id=${busId}&seat_id=${seatId}`, true);
-
-
-    // Send the XMLHttpRequest
-    xhr.send();
+    // Update value of seat_id field
+    seatIdField.value = seat.getAttribute('data-seat');
   });
+});
+
+bookBtn.addEventListener('click', event => {
+  event.preventDefault();
+
+  const seatId = seatIdField.value;
+
+  // Send AJAX request to book the seat
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'booking.php');
+  xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  xhr.onload = () => {
+    if (xhr.status === 200) {
+      // Update the seat color to red
+      const selectedSeat = document.querySelector('.seat.selected');
+      selectedSeat.classList.add('booked');
+
+      // Disable the book button
+      bookBtn.disabled = true;
+    } else {
+      console.error(xhr.statusText);
+    }
+  };
+  xhr.onerror = () => {
+    console.error(xhr.statusText);
+  };
+  xhr.send(`seat_id=${seatId}`);
 });
 
 </script>

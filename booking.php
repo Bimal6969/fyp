@@ -1,12 +1,15 @@
 <?php
+error_reporting(E_ALL);
+
+ini_set('display_errors', '1');
 include("connection.php");
 
 // Check if the form is submitted
 if (isset($_POST['submit'])) {
     // Retrieve the user's information from the form
-    $bus_id =$_POST['Bus_id'];
+    $Bus_id =$_POST['Bus_id'];
     $city = $_POST['city'];
-    $destination = $_POST['Destination'];
+    $Destination = $_POST['Destination'];
     $bus_number = $_POST['Bus_number'];
     $departure_date = $_POST['departure_date'];
     $departure_time = $_POST['departure_time'];

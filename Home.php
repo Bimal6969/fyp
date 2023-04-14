@@ -10,27 +10,6 @@
   <?php
     include("navbar.php");
   ?>
-  <!--navbar-->
-  <!-- <nav>
-        <div class="nav-left">
-          <div class="logo">
-            <a href="#">Logo</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="Home.php">Home</a></li>
-            <li><a href="aboutus.php">About Us</a></li>
-            <li><a href="bookticket.php">Book Ticket</a></li>
-            <li><a href="contactus.php">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="nav-right">
-          <ul class="login-register">
-            <li><a href="loginmenu.php">Login /</a></li>
-            <li><a href="registration.php">Register</a></li>
-          </ul>
-        </div>
-      </nav> -->
-
   <!--main body-->
 	<div class="hero-image">
 		<div class="hero-text">

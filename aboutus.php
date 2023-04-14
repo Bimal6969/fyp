@@ -9,25 +9,9 @@
     <link rel="stylesheet" href="css/footer.css">
 </head>
 <body>
-    <nav>
-        <div class="nav-left">
-          <div class="logo">
-            <a href="#">Logo</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="Home.php">Home</a></li>
-            <li><a href="aboutus.php">About Us</a></li>
-            <li><a href="bookticket.php">Book Ticket</a></li>
-            <li><a href="contactus.php">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="nav-right">
-          <ul class="login-register">
-            <li><a href="loginmenu.php">Login /</a></li>
-            <li><a href="registration.php">Register</a></li>
-          </ul>
-        </div>
-      </nav>
+  <?php
+  include("navbar.php");
+  ?>
 
 	<header>
 		<h1>About Us</h1>
@@ -45,7 +29,7 @@
 		<section>
 			<h2>Testimonials</h2>
 			<blockquote>
-				<p>"I hate using this website to book my bus tickets. It's so hard and inconvenient, and I always find the worst prices here!"</p>
+				<p>"I love using this website to book my bus tickets. It's so easy and convenient, and I always find the best prices here!"</p>
 				<cite>- Utkarsh</cite>
 			</blockquote>
 			<blockquote>

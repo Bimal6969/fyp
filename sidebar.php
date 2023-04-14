@@ -13,7 +13,7 @@ include("connection.php");?>
 	<div class="sidebar">
 		<div class="sidebar-header">
 			<h2>Admin Panel</h2>
-			<button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button>
+			<!-- <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button> -->
 		</div>
 		<ul class="sidebar-menu">
 			<li><a href="dashboard.php">Dashboard</a></li>
@@ -25,11 +25,11 @@ include("connection.php");?>
 			<li><a href="adminlogin.php">Logout</a></li>
 		</ul>
 	</div>
-	<script>
+	<!-- <script>
 		function toggleSidebar() {
 			document.querySelector('.sidebar').classList.toggle('collapsed');
 		}
-	</script>
+	</script> -->
 
 </body>
 </html>

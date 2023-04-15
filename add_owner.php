@@ -8,11 +8,11 @@ if (isset($_POST['submit'])) {
     $phone = ($_POST['phone']);
     $password = ($_POST['password']);
      // Hash the password
-  $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+//   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
   // Insert the user's information into the "owner_info" table
   $stmt = mysqli_prepare($conn, "INSERT INTO owner_info (username, email, phone, password) VALUES (?, ?, ?, ?)");
-  mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $phone, $hashed_password);
+  mysqli_stmt_bind_param($stmt, "ssss", $username, $email, $phone, $password);
 
   if (mysqli_stmt_execute($stmt)) {
     echo "owner added successfully";

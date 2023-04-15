@@ -12,7 +12,7 @@ include("connection.php");?>
 
 	<div class="sidebar">
 		<div class="sidebar-header">
-			<h2>Admin Panel</h2>
+			<h2>Owner Panel</h2>
 			<!-- <button class="sidebar-toggle" onclick="toggleSidebar()">&#9776;</button> -->
 		</div>
 		<ul class="sidebar-menu">

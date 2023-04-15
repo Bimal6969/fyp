@@ -63,10 +63,6 @@
         <th>Bus_Id</th>
         <th>Bus_number</th>
         <th>Mobile_number</th>
-        <!-- <th>Bus Number</th>
-        <th>Departure Date</th>
-        <th>Departure Time</th>
-        <th>Cost</th> -->
         <th>Update</th>
         <th>Delete</th>
     </tr>

@@ -1,6 +1,5 @@
 <?php
-include ("connection.php");
-
+    include ("connection.php");
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,11 +12,11 @@ include ("connection.php");
 <body>
 <h1 style="text-align: center;">Choose your bus</h1>
     <style>
-         body {
+         /* body {
       background-image: url('image/image3.jpg');
       background-size: cover;
       background-repeat: no-repeat;
-    }
+    } */
         table {
             border-collapse: collapse;
             width: 80%;
@@ -46,26 +45,8 @@ include ("connection.php");
             border: none;
             cursor: pointer;
         }
-        /* .update-btn, .delete-btn {
-            display: inline-block;
-            background-color: #555555;
-            color: white;
-            padding: 6px 12px;
-            margin-right: 5px;
-            text-align: center;
-            text-decoration: none;
-            font-size: 14px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-        }
-        .update-btn:hover, .delete-btn:hover {
-            background-color: #333333;
-        } */
     </style>
-    
-
-    <table>
+   <table>
     <tr>
         <th> Id</th>
         <th>Bus_id</th>
@@ -77,8 +58,9 @@ include ("connection.php");
         <th>Cost</th>
         <th>Book</th>
     </tr>
-    <?php
-        $sql="Select * from `routes`";
+<table> 
+<?php
+        $sql="SELECT * FROM `routes`";
         $result=(mysqli_query($conn,$sql));
         if($result){
             while($row=mysqli_fetch_assoc($result)){
@@ -105,5 +87,6 @@ include ("connection.php");
            
         }
     ?>
+    
 </body>
 </html>

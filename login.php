@@ -15,11 +15,11 @@ if (isset($_POST['login'])) {
   if (mysqli_num_rows($result) == 1) {
     $row = mysqli_fetch_assoc($result);
     // Use the password_verify function to compare the entered password with the retrieved hashed password
-    if (password_verify($password, $row['password'])) {
+    if ($password == $row['password']){
       // If the passwords match, create a session for the owner and redirect them to the owner dashboard
       $_SESSION['username'] = $username;
-      $_SESSION['user_type'] = 'owner';
-      header("Location: owner_dashboard.php");
+      $_SESSION['user_type'] = 'owner_info';
+      header("Location: ownerdashboard.php");
       exit();
     } else {
       // If the passwords don't match, show an error message

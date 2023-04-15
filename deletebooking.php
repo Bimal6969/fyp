@@ -4,7 +4,7 @@ include("connection.php");
 if(isset($_GET["deleteid"])){
     $id=$_GET["deleteid"];
 
-    $sql="delete from `booking` where id=$id";
+    $sql="delete from `bookings` where booking_id=$id";
     $result=mysqli_query($conn,$sql);
     if($result){
         //echo"delete successfully";

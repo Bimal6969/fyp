@@ -123,7 +123,7 @@ if (isset($_POST['submit'])) {
                 <td>".$email."</td>
                 <td>".$phone."</td>
                 
-                <td><button><a href=delete.php?deleteid=".$id.">Delete</a></button></td>
+                <td><button><a href=deleteowner.php?deleteid=".$id.">Delete</a></button></td>
               </tr>";
             }
            

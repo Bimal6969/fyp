@@ -15,9 +15,10 @@ include('sidebar.php');
     <h2>Total Bookings</h2>
     <?php
       $sql = "SELECT COUNT(*) AS total FROM bookings";
-      $result = mysqli_query($conn, $sql);
+     $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
       echo "<p>".$row['total']."</p>";
+    
     ?>
     <p id="total-bookings"></p>
   </div>

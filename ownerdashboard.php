@@ -18,6 +18,7 @@ include('ownersidebar.php');
       $result = mysqli_query($conn, $sql);
       $row = mysqli_fetch_assoc($result);
       echo "<p>".$row['total']."</p>";
+     
     ?>
     <p id="total-bookings"></p>
   </div>

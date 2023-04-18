@@ -8,6 +8,7 @@
 </head>
 <body>
 <nav>
+  
         <div class="nav-left">
           <div class="logo">
             <a href="#">Logo</a>
@@ -15,7 +16,6 @@
           <ul class="nav-links">
             <li><a href="Home.php">Home</a></li>
             <li><a href="aboutus.php">About Us</a></li>
-            <li><a href="bookticket.php">Book Ticket</a></li>
             <li><a href="contactus.php">Contact Us</a></li>
           </ul>
         </div>

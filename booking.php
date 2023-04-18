@@ -1,56 +1,7 @@
 <?php
-error_reporting(E_ALL);
-
-ini_set('display_errors', '1');
-include("connection.php");
-
-// Check if the form is submitted
-if (isset($_POST['submit'])) {
-    // Retrieve the user's information from the form
-    $Bus_id =$_POST['Bus_id'];
-    $city = $_POST['city'];
-    $Destination = $_POST['Destination'];
-    $bus_number = $_POST['Bus_number'];
-    $departure_date = $_POST['departure_date'];
-    $departure_time = $_POST['departure_time'];
-    $cost = $_POST['cost'];
-    $seat_id = $_POST['seat_id'];
-    $fullName = $_POST['fullName'];
-    $contactNumber = $_POST['contactNumber'];
-    $email = $_POST['email'];
-    $gender = $_POST['gender'];
-  
-    // Prepare and execute the sql query to insert the user's information into the "bookings" table
-    $stmt = mysqli_prepare($conn, "INSERT INTO `bookings` (Bus_id, city, Destination, Bus_number, departure_date, departure_time, cost, seat_id, fullName, contactNumber, email, gender) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-
-    // Bind the variables to the prepared statement as parameters
-    mysqli_stmt_bind_param($stmt, "ssssssssssss", $bus_id, $city, $destination, $bus_number, $departure_date, $departure_time, $cost, $seat_id, $fullName, $contactNumber, $email, $gender);
-    if (mysqli_stmt_execute($stmt)) {
-        echo "Booking Successful!";
-    } else {
-        echo "Booking Failed!";
-    }
-
-    // Close the database connection
-    mysqli_close($conn);
-}
-if (isset($_POST['seat_id'])) {
-    $seatId = $_POST['seat_id'];
-  
-    // Check if the seat is available
-    $query = "SELECT * FROM seats WHERE seat_id = '$seatId' AND is_booked = 0";
-    $result = mysqli_query($conn, $query);
-  
-    if (mysqli_num_rows($result) > 0) {
-      // Book the seat
-      $query = "UPDATE seats SET is_booked = 1 WHERE seat_id = '$seatId'";
-      mysqli_query($conn, $query);
-      $message = 'Seat booked successfully';
-    } else {
-      echo 'Seat is already booked';
-    }
-  }
+    include('connection.php');
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -87,6 +38,7 @@ table{
 h1{
     text-align:center;
 }
+
   </style>
     <h1>Seat Booking</h1>
     <div class="bus-layout">
@@ -107,7 +59,7 @@ h1{
                         <a  class="seat" data-seat="B8">B8</a>
                     </td>
                     <td>
-                        <a  class="seat" data-seat="B10">B10</a>
+                        <a  class="seat"  data-seat="B10">B10</a>
                     </td>
                     <td>
                         <a  class="seat" data-seat="B12">B12</a>
@@ -260,6 +212,38 @@ h1{
   <button id="book-btn" class="login" type="submit" name="submit">Book</button>
 </form>
 </div>
+<?php
+// Check if the form is submitted
+if (isset($_POST['submit'])) {
+    // Retrieve the user's information from the form
+    $Bus_id =$_POST['Bus_id'];
+    $city = $_POST['city'];
+    $Destination = $_POST['Destination'];
+    $bus_number = $_POST['Bus_number'];
+    $departure_date = $_POST['departure_date'];
+    $departure_time = $_POST['departure_time'];
+    $cost = $_POST['cost'];
+    $seat_id = $_POST['seat_id'];
+    $fullName = $_POST['fullName'];
+    $contactNumber = $_POST['contactNumber'];
+    $email = $_POST['email'];
+    $gender = $_POST['gender'];
+    
+
+    // Prepare and execute the sql query to insert the user's information into the "bookings" table
+    $stmt = mysqli_prepare($conn, "INSERT INTO `bookings` (`booking_id`, `bus_id`, `city`, `Destination`, `Bus_number`, `departure_date`, `departure_time`, `cost`, `seat_id`, `fullName`, `contactNumber`, `email`, `gender`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    // Bind the variables to the prepared statement as parameters
+    mysqli_stmt_bind_param($stmt, "ssssssssssss", $Bus_id, $city, $Destination, $bus_number, $departure_date, $departure_time, $cost, $seat_id, $fullName, $contactNumber, $email, $gender);
+    if (mysqli_stmt_execute($stmt)) {
+        echo "Booking Successful!";
+    } else {
+        echo "Booking Failed!";
+    }
+
+    // Close the database connection
+    mysqli_close($conn);
+}
+?>
 <script>
   const seats = document.querySelectorAll('.seat');
 const seatIdField = document.getElementById('seat_id');

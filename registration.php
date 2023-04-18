@@ -22,14 +22,7 @@ if (isset($_POST['submit'])) {
     exit();
   }
 
-  // Check if the passwords match
-  // if ($password != $confirmpassword) {
-  //   $_SESSION['message'] = "The passwords do not match";
-  //   $_SESSION['msg_type'] = "error";
-  //   header("location: registration.php");
-  //   exit();
-  // }
-
+  
   // Hash the password
   $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
@@ -62,25 +55,7 @@ if (isset($_POST['submit'])) {
   <?php
     include("navbar.php");
   ?>
-<!-- <nav>
-        <div class="nav-left">
-          <div class="logo">
-            <a href="#">Logo</a>
-          </div>
-          <ul class="nav-links">
-            <li><a href="Home.php">Home</a></li>
-            <li><a href="aboutus.php">About Us</a></li>
-            <li><a href="bookticket.php">Book Ticket</a></li>
-            <li><a href="contactus.php">Contact Us</a></li>
-          </ul>
-        </div>
-        <div class="nav-right">
-          <ul class="login-register">
-            <li><a href="loginmenu.php">Login /</a></li>
-            <li><a href="registration.php">Register</a></li>
-          </ul>
-        </div>
-      </nav> -->
+
 
     <div class="registration-container">
       <h2>Create a new account</h2>
